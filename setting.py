@@ -53,6 +53,6 @@ DEFAULT_ANSWER = "I don't know what you want from me" \
 DB_CONFIG = dict(
     provider='postgres',
     user='postgres',
-    password='spayce1488322',
-    host='localhost',
+    password='1234',
+    host='vk_bot',
 )
