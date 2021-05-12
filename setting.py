@@ -1,4 +1,4 @@
-
+from config import PGUSER, PGPASSWORD, ip
 INTENTS = [
     {
         "name": 'Дата проведения',
@@ -52,7 +52,7 @@ DEFAULT_ANSWER = "I don't know what you want from me" \
 
 DB_CONFIG = dict(
     provider='postgres',
-    user='postgres',
-    password='1234',
-    host='vk_bot',
+    user=PGUSER,
+    password=PGPASSWORD,
+    host=ip,
 )

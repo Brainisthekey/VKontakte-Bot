@@ -5,7 +5,7 @@ import logging
 from pony.orm import db_session
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
-from _token import token, group_id
+from config import token, group_id
 from models import UserState, Registration
 from setting import SCENARIO,INTENTS,DEFAULT_ANSWER
 import handler
