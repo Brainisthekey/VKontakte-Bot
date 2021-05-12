@@ -18,11 +18,10 @@ services:
         volumes: 
             - ./postgres:/var/lib/postgresql
     
-    tgbot:
-        container_name: bot
+    vkbot:
+        container_name: bot_vk
         build:
             context: .
-        command: python models.py
         command: python vk_bot.py
         restart: always
         networks: 
