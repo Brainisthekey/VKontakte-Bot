@@ -1,21 +1,12 @@
 import requests
 import vk_api
 import logging
-
 from pony.orm import db_session
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
-from config import token, group_id
-from models import UserState, Registration
-from setting import SCENARIO,INTENTS,DEFAULT_ANSWER
-import handler
-
-# log_obj = logging.getLogger('VK_LOG')
-# log_obj.setLevel(logging.INFO)
-# fh = logging.FileHandler('log_vk.log', 'w', 'UTF-8')
-# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# fh.setFormatter(formatter)
-# log_obj.addHandler(fh)
+from utils.db.models import UserState, Registration
+from data.setting import SCENARIO,INTENTS,DEFAULT_ANSWER
+from handlers import handler
 
 log_obj = logging.getLogger('VK_BOT')
 def configure_logging():
@@ -55,20 +46,16 @@ class Bot:
         if event.type != VkBotEventType.MESSAGE_NEW:
             log_obj.info('I dont know how to work with this event %s', event.type)
             return
-        #user_id = event.object.peer_id
         user_id = event.object.message['from_id']
         text = event.message.text
         state = UserState.get(user_id=str(user_id))
 
         if state is not None:
-            # continiue scenario
             self.continue_scenario(text=text, state=state, user_id=user_id)
         else:
-            # search intent
             for intent in INTENTS:
                 log_obj.debug(f'User gets {intent}')
                 if any(token in text.lower() for token in intent['tokens']):
-                    # run intent
                     if intent['answer']:
                         self.send_text(text_to_send=intent['answer'], user_id=user_id)
                     else:
@@ -87,7 +74,10 @@ class Bot:
 
     def send_image(self, image, user_id):
         upload_url = self.api.photos.getMessagesUploadServer()['upload_url']
-        upload_data = requests.post(url=upload_url, files={'photo': ('image.png', image, 'image/png')}).json()
+        upload_data = requests.post(
+                                url=upload_url,
+                                files={'photo': ('image.png', image, 'image/png')}
+        ).json()
         image_data = self.api.photos.saveMessagesPhoto(**upload_data)
         owner_id, media_id = image_data[0]['owner_id'], image_data[0]['id']
         attachment = f'photo{owner_id}_{media_id}'
@@ -114,7 +104,7 @@ class Bot:
                     step_name=first_step,
                     context={},
                     user_id=str(user_id)
-                )
+        )
 
     def continue_scenario(self, text, state, user_id):
         steps = SCENARIO[state.scenario_name]['steps']
@@ -122,27 +112,17 @@ class Bot:
 
         handlers = getattr(handler, step['handler'])
         if handlers(text=text, context=state.context):
-            # next step
             next_step = steps[step['next_step']]
             self.send_step(next_step, user_id, text, state.context)
             if next_step['next_step']:
-                # switch to next step
                 state.step_name = step['next_step']
             else:
-                # finish scenario
                 log_obj.info('User registration info: {name} {email}'.format(**state.context))
                 Registration(name=state.context['name'], email=state.context['email'])
                 state.delete()
         else:
-            # retry current step
             text_to_send = step['failure_text'].format(**state.context)
             self.send_text(text_to_send=text_to_send, user_id=user_id)
-
-
-if __name__ == "__main__":
-    configure_logging()
-    bot = Bot(group_id=group_id, token=token)
-    bot.run()
 
 
 

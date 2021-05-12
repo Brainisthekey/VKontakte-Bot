@@ -1,6 +1,5 @@
 import re
-
-from generate_tiket import generate
+from utils.generate_tiket import generate
 
 re_pattern_name = re.compile(r'^[\w\-\s]{3,30}$')
 re_pattern_email = re.compile(r'\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b')

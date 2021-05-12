@@ -1,11 +1,10 @@
 import json
 from io import BytesIO
-
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-TEMPLATE_PATH = "files/Tiket.png"
-FONT_PATH = "files/Roboto-Regular.ttf"
+TEMPLATE_PATH = "data/tikets/Tiket.png"
+FONT_PATH = "data/font/Roboto-Regular.ttf"
 FONT_SIZE = 20
 BLACK = (0, 0, 0, 255)
 NAME_OFFSET = (275, 148)
@@ -34,7 +33,7 @@ def generate(name,email):
     avatar_file.thumbnail(IM_SIZE)
     base.paste(avatar_file, AVATAR_OFFSET)
     #We need to save file for tests
-    with open('files/ticket_example.png', 'wb') as file:
+    with open('data/tikets/ticket_example.png', 'wb') as file:
         base.save(file, 'png')
     temp_file = BytesIO()
     base.save(temp_file, 'png')

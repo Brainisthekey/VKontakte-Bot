@@ -1,13 +1,11 @@
 from copy import deepcopy
 from unittest import TestCase
-from unittest.mock import patch, Mock, ANY, MagicMock
-
+from unittest.mock import patch, Mock
 from pony.orm import db_session, rollback
 from vk_api.bot_longpoll import VkBotMessageEvent
-
-from generate_tiket import generate
+from utils.generate_tiket import generate
 from vk_bot import Bot
-from setting import DEFAULT_ANSWER, INTENTS, SCENARIO
+from data.setting import DEFAULT_ANSWER, INTENTS, SCENARIO
 
 def isolate_db(test_func):
     def wrapper(*args, **kwargs):
@@ -48,26 +46,6 @@ class Test1(TestCase):
                 bot.on_event.assert_called()
                 bot.on_event.assert_any_call(obj)
                 assert bot.on_event.call_count == count
-
-
-    # def test_on_event(self):
-    #
-    #     event = VkBotMessageEvent(raw=self.RAW_EVENT)
-    #     send_mock = Mock()
-    #
-    #     with patch('vk_bot.vk_api.VkApi'):
-    #         with patch('vk_bot.VkBotLongPoll'):
-    #             bot = Bot('', '')
-    #             bot.api = Mock()
-    #             bot.api.messages.send = send_mock
-    #
-    #             bot.on_event(event)
-    #
-    #     send_mock.assert_called_once_with(
-    #         message = self.RAW_EVENT['object']['message']['text'],
-    #         random_id = ANY,
-    #         peer_id = self.RAW_EVENT['object']['message']['peer_id']
-    #     )
 
     INPUTS = [
         'Привет',

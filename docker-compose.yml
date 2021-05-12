@@ -22,7 +22,7 @@ services:
         container_name: bot_vk
         build:
             context: .
-        command: python vk_bot.py
+        command: python app_run.py
         restart: always
         networks: 
             - vk_bot

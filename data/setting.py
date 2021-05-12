@@ -1,4 +1,4 @@
-from config import PGUSER, PGPASSWORD, ip
+from data.config import PGUSER, PGPASSWORD, ip
 INTENTS = [
     {
         "name": 'Дата проведения',
