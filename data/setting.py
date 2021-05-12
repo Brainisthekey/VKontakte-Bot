@@ -1,4 +1,4 @@
-from data.config import PGUSER, PGPASSWORD, ip
+from data.config import PGUSER, PGPASSWORD, ip, DATABASEE
 INTENTS = [
     {
         "name": 'Дата проведения',
@@ -55,4 +55,5 @@ DB_CONFIG = dict(
     user=PGUSER,
     password=PGPASSWORD,
     host=ip,
+    #database=DATABASEE
 )

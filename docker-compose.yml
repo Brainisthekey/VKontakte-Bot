@@ -1,20 +1,19 @@
 version: "3.1"
 
 networks: 
-    vk_bot:
+    vk_api_bot:
         driver: bridge
-
 services: 
     db:
         container_name: vk_bot
         image: sameersbn/postgresql:10-2
-        environment: 
+        environment:
             PG_PASSWORD: $PGPASSWORD
         restart: always
         ports: 
             - 5432:5432
         networks: 
-            - vk_bot
+            - vk_api_bot
         volumes: 
             - ./postgres:/var/lib/postgresql
     
@@ -25,7 +24,7 @@ services:
         command: python app_run.py
         restart: always
         networks: 
-            - vk_bot
+            - vk_api_bot
         env_file:
             - ".env"
         volumes: 
