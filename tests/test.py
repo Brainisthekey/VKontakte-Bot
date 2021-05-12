@@ -102,7 +102,7 @@ class Test1(TestCase):
 
         ticket_file = generate('name', 'email@email.ru')
 
-        with open('files/ticket_example.png', 'rb') as file:
+        with open('data/tikets/ticket_example.png', 'rb') as file:
             expected_bytes = file.read()
 
         assert ticket_file.read() == expected_bytes

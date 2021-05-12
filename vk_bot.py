@@ -5,7 +5,7 @@ from pony.orm import db_session
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
 from utils.db.models import UserState, Registration
-from data.setting import SCENARIO,INTENTS,DEFAULT_ANSWER
+from data.setting import SCENARIO, INTENTS, DEFAULT_ANSWER
 from handlers import handler
 
 log_obj = logging.getLogger('VK_BOT')
