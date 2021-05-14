@@ -1,20 +1,20 @@
 from data.config import PGUSER, PGPASSWORD, ip, DATABASEE
 INTENTS = [
     {
-        "name": 'Дата проведения',
-        "tokens": ('когда', 'сколько', 'дата', 'дату'),
+        "name": 'Date conference',
+        "tokens": ('when', 'what time', 'in what period', 'at which instant'),
         "scenario": None,
-        "answer": 'Конференция проводится 15-го апреля в 00:00'
+        "answer": 'Meeting will be held the 15th of Jun at 00:00'
     },
     {
-        "name": 'Место провидения',
-        "tokens": ('где', 'место', 'локация', 'адресс', 'метро'),
+        "name": 'Where will be',
+        "tokens": ('where', 'place', 'locations', 'adress', 'point', 'station'),
         "scenario": None,
-        "answer": 'Конференция пройдёт в MicrosoftTems'
+        "answer": 'The conference will be held on the platform MicrosoftTems'
     },
     {
-        "name": 'Регестрация',
-        "tokens": ('регист', 'регестрация', 'добавь', 'добав'),
+        "name": 'Registration',
+        "tokens": ('registration', 'regist', 'reg', 'book', 'signing up', 'auth'),
         "scenario": 'registration',
         "answer": None
     }
@@ -47,8 +47,9 @@ SCENARIO = {
     }
 }
 
-DEFAULT_ANSWER = "I don't know what you want from me" \
-                  "I can tell you when and where we will have a meating"
+DEFAULT_ANSWER = "I don't know what you want from me\n" \
+                 "I can tell you when and where we will have a meating \n" \
+                 "Just answer me"
 
 DB_CONFIG = dict(
     provider='postgres',

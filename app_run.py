@@ -1,5 +1,6 @@
-from vk_bot import configure_logging, Bot
+from vk_bot import Bot
 from data.config import token, group_id
+from utils.info_logging import configure_logging
 
 
 if __name__ == "__main__":

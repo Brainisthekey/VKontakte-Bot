@@ -48,13 +48,13 @@ class Test1(TestCase):
                 assert bot.on_event.call_count == count
 
     INPUTS = [
-        'Привет',
-        'А когда?',
-        'Где будет конференция?',
-        'Зарегистрируй меня',
-        'Вениамин',
-        'мой адрес email@email',
-        'email@email.ru',
+        'Hello',
+        'When ?',
+        'Where ?',
+        'Registration',
+        'Andrii',
+        'my adress andriigmail',
+        'andrii@gmail.com',
     ]
 
     EXPECTED_OUTPUTS = [
@@ -64,7 +64,7 @@ class Test1(TestCase):
         SCENARIO['registration']['steps']['step1']['text'],
         SCENARIO['registration']['steps']['step2']['text'],
         SCENARIO['registration']['steps']['step2']['failure_text'],
-        SCENARIO['registration']['steps']['step3']['text'].format(name='Вениамин', email='email@email.ru')
+        SCENARIO['registration']['steps']['step3']['text'].format(name='Andrii', email='andrii@gmail.com')
     ]
     @isolate_db
     def test_run_ok(self):

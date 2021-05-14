@@ -7,9 +7,9 @@ TEMPLATE_PATH = "data/tikets/Tiket.png"
 FONT_PATH = "data/font/Roboto-Regular.ttf"
 FONT_SIZE = 20
 BLACK = (0, 0, 0, 255)
-NAME_OFFSET = (275, 148)
-EMAIL_OFFSET = (275, 185)
-AVATAR_OFFSET = (530, 153)
+NAME_OFFSET = (257, 187)
+EMAIL_OFFSET = (255, 218)
+AVATAR_OFFSET = (472, 135)
 IM_SIZE = (120,120)
 
 

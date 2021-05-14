@@ -7,21 +7,7 @@ import random
 from utils.db.models import UserState, Registration
 from data.setting import SCENARIO, INTENTS, DEFAULT_ANSWER
 from handlers import handler
-
-log_obj = logging.getLogger('VK_BOT')
-def configure_logging():
-
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s', datefmt="%Y-%m-%d %H:%M:%S"))
-    stream_handler.setLevel(logging.DEBUG)
-    log_obj.addHandler(stream_handler)
-
-    file_handler = logging.FileHandler(filename='bot.log', mode='a', encoding='UTF-8')
-    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt="%Y-%m-%d %H:%M:%S"))
-    file_handler.setLevel(logging.DEBUG)
-    log_obj.addHandler(file_handler)
-
-    log_obj.setLevel(logging.DEBUG)
+from utils.info_logging import log_obj
 
 
 class Bot:
@@ -100,10 +86,11 @@ class Bot:
         first_step = scenario['first_step']
         step = scenario['steps'][first_step]
         self.send_step(step=scenario['steps'][first_step], user_id=user_id, text=text, context={})
-        UserState(scenario_name=scenario_name,
-                    step_name=first_step,
-                    context={},
-                    user_id=str(user_id)
+        UserState(
+                scenario_name=scenario_name,
+                step_name=first_step,
+                context={},
+                user_id=str(user_id)
         )
 
     def continue_scenario(self, text, state, user_id):
