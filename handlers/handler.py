@@ -20,7 +20,7 @@ def handle_email(text, context):
     else:
         return False
 
-def generate_ticket(text, context):
+def generate_ticket(context):
     return generate(name=context['name'], email=context['email'])
 
 

@@ -1,13 +1,12 @@
 import requests
 import vk_api
-import logging
-from pony.orm import db_session
-from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
+from handlers import handler
+from pony.orm import db_session
+from utils.info_logging import log_obj
+from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from utils.db.models import UserState, Registration
 from data.setting import SCENARIO, INTENTS, DEFAULT_ANSWER
-from handlers import handler
-from utils.info_logging import log_obj
 
 
 class Bot:

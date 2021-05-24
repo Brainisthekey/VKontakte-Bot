@@ -49,7 +49,8 @@ SCENARIO = {
 
 DEFAULT_ANSWER = "I don't know what you want from me\n" \
                  "I can tell you when and where we will have a meating \n" \
-                 "Just answer me"
+                 "Just answer me \n" \
+                 "Also i can register you"
 
 DB_CONFIG = dict(
     provider='postgres',

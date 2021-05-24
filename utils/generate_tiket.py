@@ -1,6 +1,6 @@
 import json
-from io import BytesIO
 import requests
+from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 
 TEMPLATE_PATH = "data/tikets/Tiket.png"
@@ -13,7 +13,7 @@ AVATAR_OFFSET = (472, 135)
 IM_SIZE = (120,120)
 
 
-def generate(name,email):
+def generate(name, email):
 
     # get an image
     base = Image.open(TEMPLATE_PATH).convert("RGBA")
@@ -32,7 +32,6 @@ def generate(name,email):
     avatar_file = Image.open(avatar_file_like)
     avatar_file.thumbnail(IM_SIZE)
     base.paste(avatar_file, AVATAR_OFFSET)
-    #We need to save file for tests
     with open('data/tikets/ticket_example.png', 'wb') as file:
         base.save(file, 'png')
     temp_file = BytesIO()
