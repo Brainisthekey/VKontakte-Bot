@@ -16,7 +16,7 @@
 • DATABASEE=postgres
 
 # Example tiket
-[](https://github.com/Brainisthekey/Telegram-CryptoInfoBot/blob/master/data/Project_image.png)
+[Tiket](https://github.com/Brainisthekey/VKontakte-Bot/blob/main/data/tiket.png)
 
 # Links 🔗
 ### Bot demonstration
