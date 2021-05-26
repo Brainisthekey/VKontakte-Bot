@@ -16,7 +16,7 @@
 • DATABASEE=postgres
 
 # Example tiket
-[Tiket](https://github.com/Brainisthekey/VKontakte-Bot/blob/main/data/tiket.png)
+![Tiket](https://github.com/Brainisthekey/VKontakte-Bot/blob/main/data/tiket.png)
 
 # Links 🔗
 ### Bot demonstration
