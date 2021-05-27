@@ -15,7 +15,7 @@
 
 • DATABASEE=postgres
 
-# Example tiket
+# Example ticket
 ![Tiket](https://github.com/Brainisthekey/VKontakte-Bot/blob/main/data/tiket.png)
 
 # Links 🔗
